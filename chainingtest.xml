@@ -3,8 +3,8 @@
 <suite name="Suite">
     <test name="Test">
         <classes>
-            <class name="RestAssured.ChainingClass1"/>
-            <class name="RestAssured.ChainingClass2"/>
+            <class name="tests.ChainingClass1"/>
+            <class name="tests.ChainingClass2"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

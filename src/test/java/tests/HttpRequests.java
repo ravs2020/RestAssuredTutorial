@@ -1,4 +1,4 @@
-package RestAssured;
+package tests;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.xml.XmlPath;

@@ -1,4 +1,4 @@
-package RestAssured;
+package pojo;
 
 public class MyObject {
 

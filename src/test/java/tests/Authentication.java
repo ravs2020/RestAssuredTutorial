@@ -1,4 +1,4 @@
-package RestAssured;
+package tests;
 
 import org.testng.annotations.Test;
 

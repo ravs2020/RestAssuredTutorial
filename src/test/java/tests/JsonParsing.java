@@ -1,8 +1,9 @@
-package RestAssured;
+package tests;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import pojo.MyObject;
 
 public class JsonParsing {
     //*Java object(POJO) to json*//
