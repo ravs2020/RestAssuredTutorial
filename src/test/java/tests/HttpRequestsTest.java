@@ -14,11 +14,11 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class HttpRequests {
+public class HttpRequestsTest {
     int id;
     String job;
 
-    @Test(priority=1)
+    @Test(priority=1,groups={"smokeTest"})
     public void getUsers(){
         Response rsp = given()
                         .when()
@@ -31,7 +31,7 @@ public class HttpRequests {
         Assert.assertEquals(rsp.jsonPath().get("data[0].first_name"), "Michael");
     }
 
-   @Test(priority=2)
+   @Test(priority=2,groups={"smokeTest"})
     public void createUser(){
         //hashmap not recommended,but since only 2 key-value pair and so its fine to use
         HashMap<String,String> data = new HashMap<>();
@@ -51,7 +51,7 @@ public class HttpRequests {
         System.out.println("ID created is: "+id);
     }
 
-    @Test(priority=3, dependsOnMethods = {"createUser"})
+    @Test(priority=3, dependsOnMethods = {"createUser"},groups={"smokeTest"})
     public void updateUser(){
         HashMap<String,String> data = new HashMap<>();
         data.put("name","morpheus");
@@ -68,8 +68,17 @@ public class HttpRequests {
         System.out.println("Job# "+job+" updated to id "+id);
     }
 
+    @Test(priority = 4,dependsOnMethods = {"createUser"},groups={"smokeTest"})
+    public void deleteUser(){
+        Response rsp = given()
+                .contentType("application/json")
+                .when()
+                .delete("https://reqres.in/api/users/"+id);
+        Assert.assertEquals(rsp.getStatusCode(),204);
+    }
+
     //API URL# https://reqres.in/api/users?page=2&id=5
-    @Test
+    @Test(priority=5)
     public void testQueryPathParams(){
         given()
         .pathParams("mypath","users")
@@ -82,7 +91,7 @@ public class HttpRequests {
         .log().all();
     }
 
-    @Test
+    @Test(priority=6)
     public void getCookiesInfo(){
         Response rsp =given()
                 .when()
@@ -94,7 +103,7 @@ public class HttpRequests {
         }
     }
 
-    @Test
+    @Test(priority=7)
     public void getHeaders(){
         Response rsp =given()
                 .when()
@@ -115,7 +124,7 @@ public class HttpRequests {
         }
     }
 
-    @Test
+    @Test(priority=8)
     public void testJsonResponse(){
         //Approach 1 - assuming the response is static
         Response rsp = given()
@@ -143,7 +152,7 @@ public class HttpRequests {
         Assert.assertTrue(flag,"Funke not found in json response");
     }
 
-    @Test
+    @Test(priority=9)
     public void testXmlResponse(){
         //Response is getting 404 not found and this method written for illustration
         Response rsp = given()
@@ -160,7 +169,7 @@ public class HttpRequests {
 
     }
 
-    @Test
+    @Test(priority=10)
     public void jsonSchemaValidation(){
         given()
                 .when()
