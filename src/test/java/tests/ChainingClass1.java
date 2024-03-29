@@ -1,4 +1,4 @@
-package RestAssured;
+package tests;
 
 import io.restassured.response.Response;
 import org.testng.ITestContext;
